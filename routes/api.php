@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 Route::get("/posts", function(){
 
     file_put_contents(dirname(__DIR__) . "/_myFiles/myText.txt", "Times accessed: ");
-
+    
     return response()->json([
         "posts" =>[
             "this dir3" => dirname(__DIR__),

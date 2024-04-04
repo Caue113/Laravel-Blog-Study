@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Posts;
 use Illuminate\Http\Client\ResponseSequence;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -46,18 +47,22 @@ Route::get("/user/{userHandle}", function($userHandle){
     return response("<h1>Users</h1><br> <p> User is: " . $userHandle . "</p>");
 });
 
-/* Posts. It has validation in id, since it must be a number */
+/* ============= Posts ================ */
+
+
 Route::get("/posts", function(){
-    return response("<h1>Posts</h1>");
+    return view("postListing", Posts::getAll());
 });
 
 Route::get("/posts/{id}", function($id){
     //dd();
     //ddd();
-    if($id > 9 || $id < 0){
+    /* if($id > 9 || $id < 0){
         return response("No user found", 404,)->header("Content-Type", "text/plain");
-    }
-    return response("This Post: " . $id);
+    } */
+    return view("postListingSingle", [
+            "post" => Posts::find($id)
+        ]);
 })->where("id", "[0-9]+");
 
 
