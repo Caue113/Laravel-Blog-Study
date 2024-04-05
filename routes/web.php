@@ -51,7 +51,9 @@ Route::get("/user/{userHandle}", function($userHandle){
 
 
 Route::get("/posts", function(){
-    return view("postListing", Posts::getAll());
+    return view("postListing", [
+        "posts" => Posts::all()
+    ]);
 });
 
 Route::get("/posts/{id}", function($id){
