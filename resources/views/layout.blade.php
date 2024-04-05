@@ -8,14 +8,28 @@
 
 
     <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/header.css">
 </head>
 <body>
     {{-- Header  --}}
-    <header>
-        <h1><i>'logo'</i>Bloggest</h1>
-        <div></div>
-        {{-- Navigation across site. Substitute with partial or component --}}
-        <nav></nav>
+    <header class="header">
+        <div class="header--middle">
+            <a href="#">
+                <div class="brand">
+                    <img src="/images/aperture-1280.png" class="brand__logo" width="64px">
+                    <h1 class="brand__name">Bloggest</h1>
+                </div>
+            </a>
+            
+            {{-- Navigation across site. Substitute with partial or component --}}
+            <nav class="main-nav">
+                <ul class="main-nav__list">
+                    <a href="" class="main-nav__item"><li>News</li></a>
+                    <a href="" class="main-nav__item"><li>Blogs</li></a>
+                    <a href="" class="main-nav__item"><li>Account</li></a>
+                </ul>
+            </nav>
+        </div>
     </header>
     
     

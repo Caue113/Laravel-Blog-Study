@@ -1,0 +1,90 @@
+.header{
+    display: flex;
+    padding: 0.5rem 0.5rem;
+    
+    top: 0rem;
+    position: sticky;
+    position: -webkit-sticky; /* Safari needs  */
+
+    background-color: orangered;
+}
+
+.header--middle{
+    display: flex;
+    width: 100%;
+    padding: 0.5rem 0.5rem;
+    background-color: rgb(233, 233, 233);
+}
+
+.brand{
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 0.5rem;
+
+    align-items: center;
+}
+
+.brand__logo{
+    max-width: 48px;
+
+    /* Transition */
+    rotate: 0deg;
+    transition: rotate 1500ms;
+    &:hover{
+        rotate: 90deg;
+    }
+}
+
+.brand__name{
+    color: black;
+    text-decoration: none;
+}
+
+
+.main-nav{
+    display: flex;
+    flex-flow: row-reverse;
+
+    flex: 1 1 0;    
+}
+
+.main-nav__list{
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 0.5rem;
+
+    justify-content: flex-end;
+    align-items: center;
+
+    padding: 0;
+    margin: 0;
+
+    list-style-type: none;
+}
+
+.main-nav__item{
+     
+    /* Used for transitioning */
+    position: relative;
+    top: 0px;
+    left: 0px;
+
+    /* Background definitions */
+    padding: 0.25rem;
+    background-color: white;
+    box-shadow: 0px 0px black;
+
+    font-size: 16px;
+    color: black;   
+    text-decoration: none; /* remove link underline */
+
+    transition: box-shadow 200ms, top 200ms, left 200ms;
+
+    &:hover{
+        cursor: pointer;
+
+        top: -2px;
+        left: -2px;
+        box-shadow: 1px 1px black;
+    }
+}
