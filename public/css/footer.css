@@ -1,0 +1,35 @@
+.footer{
+    display: flex;
+    flex-flow: row wrap;
+
+    min-height: 10rem;
+    padding: 1rem;
+
+    background-color: rgb(66, 66, 66);
+    color: rgb(217, 217, 217);
+}
+
+.footer__nav{
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
+}
+
+.guide{
+    flex: 1 1 0;
+}
+
+.footer__credits{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    width: 100%;
+}
+
+.footer__creator{
+    font-size: 14px;
+    font-style: italic;
+    text-decoration: underline;
+    color: orangered;
+}
