@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostsController;
 use App\Models\Posts;
 use Illuminate\Http\Client\ResponseSequence;
 use Illuminate\Http\Request;
@@ -50,20 +51,9 @@ Route::get("/user/{userHandle}", function($userHandle){
 /* ============= Posts ================ */
 
 
-Route::get("/posts", function(){
-    return view("postListing", [
-        "posts" => Posts::all()
-    ]);
-});
+Route::get("/posts", [PostsController::class, "index"]);
 
-// Uses route model binding. The parameter "posts" is implicitly understood by the type and equal name in function
-// Alternatively: you could do a check to see if a given post (by id) exists, then show or throw response 404
-Route::get("/posts/{posts}", function(Posts $posts){
-    return view("postListingSingle", [
-        "post" => $posts
-    ]);
-});
-
+Route::get("/posts/{posts}", [PostsController::class, "show"]);
 
 /* Other Routes */
 
