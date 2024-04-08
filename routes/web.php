@@ -56,16 +56,13 @@ Route::get("/posts", function(){
     ]);
 });
 
-Route::get("/posts/{id}", function($id){
-    //dd();
-    //ddd();
-    /* if($id > 9 || $id < 0){
-        return response("No user found", 404,)->header("Content-Type", "text/plain");
-    } */
+// Uses route model binding. The parameter "posts" is implicitly understood by the type and equal name in function
+// Alternatively: you could do a check to see if a given post (by id) exists, then show or throw response 404
+Route::get("/posts/{posts}", function(Posts $posts){
     return view("postListingSingle", [
-            "post" => Posts::find($id)
-        ]);
-})->where("id", "[0-9]+");
+        "post" => $posts
+    ]);
+});
 
 
 /* Other Routes */
