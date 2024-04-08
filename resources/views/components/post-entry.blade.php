@@ -1,6 +1,6 @@
 @props(['post'])
 
-<article style="border: black 1px dashed">
+<article {{$attributes->merge(['style' => "border: black 1px dashed;"])}}>
     <p>post_id: {{$post['id']}}</p>
     <p>post_title: {{$post['title']}}</p>
     <p>post_owner: {{$post['owner']}}</p>

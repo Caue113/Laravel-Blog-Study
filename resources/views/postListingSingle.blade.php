@@ -9,7 +9,7 @@
         <p>Post not found :(</p>
 
     @else
-        <x-post-entry :post="$post"/>
+        <x-post-entry :post="$post" style="background-color: #edcea4"/>
     @endif
 
 @endsection
