@@ -9,7 +9,7 @@ class PostsController extends Controller
 {
     // Show all Posts
     public function index(){
-        return view("postListing", [
+        return view("posts/index", [
             "posts" => Posts::all()
         ]);
     }
@@ -18,8 +18,19 @@ class PostsController extends Controller
     // Uses route model binding. The parameter "posts" is implicitly understood by the type and equal name in function
     // Alternatively: you could do a check to see if a given post (by id) exists, then show or throw response 404
     public function show(Posts $posts){
-        return view("postListingSingle", [
+        return view("posts/show", [
             "post" => $posts
         ]);
     }
+
+    //Name conventions
+    /* 
+        index - show all posts
+        show - get single post
+        create - Show form to create a new post
+        store - Stores/saves a new post
+        edit - Show form to edit a post
+        update - Update a Post
+        destroy - Delete a post
+    */
 }
