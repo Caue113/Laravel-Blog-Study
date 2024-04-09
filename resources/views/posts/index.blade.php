@@ -6,6 +6,14 @@
     <h1>Posts listings</h1>
     {{-- Alternatively, you can use @unless @endunless, which works simlarly to IF-ELSE --}}
 
+    <div class="">
+        <form method="GET" action="/posts">
+            <label for="searchField">Search</label>
+            <input type="text" name="search" id="searchField" placeholder="Search">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
     @if (count($posts) != 0)    
         @foreach($posts as $post)
             

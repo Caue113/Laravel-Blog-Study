@@ -11,7 +11,7 @@ class PostsController extends Controller
     public function index(){
         //Alternatively, you can use Request $request as parameter in method to get a instance of request
         return view("posts/index", [
-            "posts" => Posts::latest()->filter(request(["tag"]))->get()
+            "posts" => Posts::latest()->filter(request(["tag", "search"]))->get()
         ]);
     }
 
