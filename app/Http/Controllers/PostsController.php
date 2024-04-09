@@ -24,6 +24,30 @@ class PostsController extends Controller
         ]);
     }
 
+
+    public function create(Request $request){
+        return view("posts/create");
+    }
+
+    public function store(Request $request){
+        $formFields = $request->validate([
+            "title" => "required",
+            "content" => "required",
+            "tags" => "required",
+            "subtitle" => "",
+            "owner" => ""
+        ]);
+
+        //TODO: let user auth in future handle owner when creating post
+        if(empty($request->input("owner"))){            
+            $formFields["owner"] = "Anonymous";            
+        }
+
+        Posts::create($formFields); //Creates row in database
+        return redirect("/");
+    }
+
+
     //Name conventions
     /* 
         index - show all posts

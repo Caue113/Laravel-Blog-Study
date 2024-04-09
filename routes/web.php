@@ -53,6 +53,14 @@ Route::get("/user/{userHandle}", function($userHandle){
 
 Route::get("/posts", [PostsController::class, "index"]);
 
+//Store
+Route::post("/posts", [PostsController::class, "store"]);
+
+//Create
+Route::get("/posts/create", [PostsController::class, "create"]);
+
+
+//Must be at the bottom of all, as Laravel searches the first match
 Route::get("/posts/{posts}", [PostsController::class, "show"]);
 
 /* Other Routes */

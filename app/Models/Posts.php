@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Posts extends Model
 {
     use HasFactory;
+    protected $fillable = ["title", "subtitle", "content", "tags", "owner"];
 
     //Overriding function. Exists behind framework eloquent logic
     public function scopeFilter($query, array $filters){
