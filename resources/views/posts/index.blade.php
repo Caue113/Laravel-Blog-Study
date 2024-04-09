@@ -13,6 +13,8 @@
                 <p>post_id: {{$post['id']}}</p>
                 <a href= "/posts/{{$post['id']}}"> <p>post_title: {{$post['title']}}</p></a>
                 <p>post_owner: {{$post['owner']}}</p>
+
+                <x-post-tagList :tags="$post['tags']" />
             </article>
             
         @endforeach
