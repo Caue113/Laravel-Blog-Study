@@ -9,8 +9,9 @@ class PostsController extends Controller
 {
     // Show all Posts
     public function index(){
+        //Alternatively, you can use Request $request as parameter in method to get a instance of request
         return view("posts/index", [
-            "posts" => Posts::all()
+            "posts" => Posts::latest()->filter(request(["tag"]))->get()
         ]);
     }
 
