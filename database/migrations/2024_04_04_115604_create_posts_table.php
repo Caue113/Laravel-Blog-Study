@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string("tags");
             $table->longText("content");
             $table->string("owner");
+            $table->string("bgImagePath")->nullable();  //Only added via forms, not factory
             $table->timestamps();
         });
     }

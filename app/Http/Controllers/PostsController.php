@@ -38,8 +38,13 @@ class PostsController extends Controller
             "content" => "required",
             "tags" => "required",
             "subtitle" => "",
-            "owner" => ""
+            "owner" => "",
+            "bgImage" => ""
         ]);
+
+        if($request->hasFile("bgImage")){
+            $formFields["bgImagePath"] = $request->file("bgImage")->store("bgImages", "public");            
+        }
 
         //TODO: let user auth in future handle owner when creating post
         if(empty($request->input("owner"))){            
