@@ -6,22 +6,22 @@
     @csrf
 
     <label for="titleField">Title</label>
-    <input type="text" id="titleField" name="title">
+    <input type="text" id="titleField" name="title" value={{old("title")}}>
     @error('title')
         <p style="color:red">{{$message}}</p>
     @enderror
 
     <label for="subtitleField">Subtitle</label>
-    <input type="text" id="subtitleField" name="subtitle">
+    <input type="text" id="subtitleField" name="subtitle" value={{old("subtitle")}}>
 
     <label for="tagsField">Tags</label>
-    <input type="text" id="tagsField" name="tags">
+    <input type="text" id="tagsField" name="tags" value="{{old("tags")}}">
     @error('tags')
         <p style="color:red">{{$message}}</p>
     @enderror
 
     <label for="contentField">Content</label>
-    <textarea id="contentField" name="content"></textarea>
+    <textarea id="contentField" name="content">{{old("content")}}</textarea>
     @error('content')
         <p style="color:red">{{$message}}</p>
     @enderror
