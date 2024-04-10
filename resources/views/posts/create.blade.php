@@ -14,6 +14,9 @@
 
         <label for="subtitleField">Subtitle</label>
         <input type="text" id="subtitleField" name="subtitle" value={{old("subtitle")}}>
+        @error('subtitle')
+            <p style="color:red">{{$message}}</p>
+        @enderror
 
         <label for="tagsField">Tags</label>
         <input type="text" id="tagsField" name="tags" value="{{old("tags")}}">

@@ -37,7 +37,7 @@ class PostsController extends Controller
             "title" => "required",
             "content" => "required",
             "tags" => "required",
-            "subtitle" => "",
+            "subtitle" => "required",
             "owner" => "",
             "bgImage" => ""
         ]);
