@@ -7,11 +7,14 @@ use Illuminate\Http\Request;
 
 class PostsController extends Controller
 {
+    
+
     // Show all Posts
     public function index(){
+        $POSTS_PER_PAGE = 3;
         //Alternatively, you can use Request $request as parameter in method to get a instance of request
         return view("posts/index", [
-            "posts" => Posts::latest()->filter(request(["tag", "search"]))->get()
+            "posts" => Posts::latest()->filter(request(["tag", "search"]))->paginate($POSTS_PER_PAGE)
         ]);
     }
 

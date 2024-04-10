@@ -29,5 +29,6 @@
     @else
         <p> No posts exist :(</p>    
     @endif
-    
+
+    {{$posts->links()}}
 @endsection
