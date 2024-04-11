@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PostsController;
+use App\Http\Controllers\UserController;
 use App\Models\Posts;
 use Illuminate\Http\Client\ResponseSequence;
 use Illuminate\Http\Request;
@@ -21,6 +22,9 @@ Route::get('/', function () {
 
 
 /* Users zone. No regex validation needed */
+Route::get("/register", [UserController::class, "create"]);
+
+
 Route::get("/users", function(){
     return view("userListing", [
         "heading" => "Some nice text",
@@ -43,6 +47,8 @@ Route::get("/users", function(){
         ]
     ]);
 });
+
+Route::post("/users", [UserController::class, "store"]);
 
 Route::get("/user/{userHandle}", function($userHandle){
     return response("<h1>Users</h1><br> <p> User is: " . $userHandle . "</p>");

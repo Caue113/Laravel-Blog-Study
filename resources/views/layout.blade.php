@@ -37,6 +37,7 @@
                     <a href="" class="main-nav__item"><li>News</li></a>
                     <a href="/posts" class="main-nav__item"><li>Blogs</li></a>
                     <a href="" class="main-nav__item"><li>Account</li></a>
+                    <a href="/register" class="main-nav__item"><li>Register</li></a>
                 </ul>
             </nav>
         </div>
