@@ -20,7 +20,8 @@
 
         <form method="POST" action="/posts/update/{{$post['id']}}" enctype="multipart/form-data">
             @csrf
-            {{-- should be PUT method --}}
+            @method('PUT')
+            
             <div style="display: grid">
                 <label for="titleField">Title</label>
                 <input type="text" id="titleField" name="title" value={{old("title")}}>

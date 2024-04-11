@@ -65,8 +65,7 @@ Route::get("/posts/create", [PostsController::class, "create"]);
 //Edit specific post
 Route::get("/posts/edit/{id}", [PostsController::class, "edit"]);
 
-//TODO: Should be PUT
-Route::post("/posts/update/{id}", [PostsController::class, "update"]);
+Route::put("/posts/update/{id}", [PostsController::class, "update"]);
 
 //Must be at the bottom of all, as Laravel searches the first match
 Route::get("/posts/{posts}", [PostsController::class, "show"]);
