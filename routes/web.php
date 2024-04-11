@@ -67,6 +67,8 @@ Route::get("/posts/edit/{id}", [PostsController::class, "edit"]);
 
 Route::put("/posts/update/{id}", [PostsController::class, "update"]);
 
+Route::delete("/posts/delete/{post}", [PostsController::class, "destroy"]);
+
 //Must be at the bottom of all, as Laravel searches the first match
 Route::get("/posts/{posts}", [PostsController::class, "show"]);
 

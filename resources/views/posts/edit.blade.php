@@ -57,6 +57,15 @@
             </div>
             
         </form>
+
+
+        <div>
+            <form method="POST" action="/posts/delete/{{$post['id']}}">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="text-red-500 p-2 bg-white rounded-lg mb-6">Delete</button>
+            </form>
+        <div>
     @endif
 
 @endsection

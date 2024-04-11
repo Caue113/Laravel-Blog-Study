@@ -79,7 +79,7 @@ class PostsController extends Controller
         }
 
         $filledParameters = $request->all();
-        
+
         $filledParameters = array_filter($filledParameters, function($value){
             if(!is_null($value)){
                 return $value;
@@ -88,8 +88,7 @@ class PostsController extends Controller
 
         //TODO: Delete or overwrite earlier image. This is creating the image again
         if($request->hasFile("bgImage")){
-            //File::delete();
-            //Storage::delete($post['bgImagePath']);
+            //Code: Storage::disk('public')->exists($post['bgImagePath'])
             $filledParameters["bgImagePath"] = $request->file("bgImage")->store("bgImages", "public");            
         }
 
@@ -99,6 +98,13 @@ class PostsController extends Controller
 
         //redirect("/posts/edit");  //TODO: return user to posts searcher once finish
         return redirect("/posts");
+    }
+
+    public function destroy(Posts $post){        
+        //TODO: Should delete any files attached to it as well
+        $post->delete();
+
+        return redirect("/posts")->with("status", "Deleted sucessfuly");
     }
 
     //Name conventions
