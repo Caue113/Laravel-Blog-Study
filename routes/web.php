@@ -59,6 +59,14 @@ Route::post("/posts", [PostsController::class, "store"]);
 //Create
 Route::get("/posts/create", [PostsController::class, "create"]);
 
+// TODO: Show post explorer to user to select a post to edit it. 
+// Route::get("/posts/edit/", [PostsController::class, "editMany"]);
+
+//Edit specific post
+Route::get("/posts/edit/{id}", [PostsController::class, "edit"]);
+
+//TODO: Should be PUT
+Route::post("/posts/update/{id}", [PostsController::class, "update"]);
 
 //Must be at the bottom of all, as Laravel searches the first match
 Route::get("/posts/{posts}", [PostsController::class, "show"]);

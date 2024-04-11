@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Posts;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class PostsController extends Controller
 {
@@ -55,6 +57,49 @@ class PostsController extends Controller
         return redirect("/");
     }
 
+
+    public function edit(Request $request){        
+        $_post = Posts::select("*")->where('id', $request["id"])->first();
+        return view("/posts/edit", [
+            "post" => $_post
+        ]);
+
+        // if you want to use Route Model Biding, you can simply use the $post
+        // edit(Posts $post)
+        // $_post = $post
+    }
+
+    public function update(Request $request){
+        $post = Posts::select("*")->where('id', $request["id"])->first();
+  
+
+        if(empty($request['id'] || is_null($request['id']))){
+            echo "error";
+            dd($request);
+        }
+
+        $filledParameters = $request->all();
+        
+        $filledParameters = array_filter($filledParameters, function($value){
+            if(!is_null($value)){
+                return $value;
+            }
+        });
+
+        //TODO: Delete or overwrite earlier image. This is creating the image again
+        if($request->hasFile("bgImage")){
+            //File::delete();
+            //Storage::delete($post['bgImagePath']);
+            $filledParameters["bgImagePath"] = $request->file("bgImage")->store("bgImages", "public");            
+        }
+
+        
+        $post->update($filledParameters);
+
+
+        //redirect("/posts/edit");  //TODO: return user to posts searcher once finish
+        return redirect("/posts");
+    }
 
     //Name conventions
     /* 
