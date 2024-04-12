@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
 class UserController extends Controller
@@ -12,6 +13,27 @@ class UserController extends Controller
     //Show form to create/register
     public function create(User $user){   
         return view("users/register");
+    }
+
+    public function login(User $user){   
+        return view("users/login");
+    }
+
+    public function authenticate(Request $request){   
+        //Paassword is already hashed by framework
+        $credentials = $request->validate([
+            "email" => ["required", "email"],
+            "password" => "required",
+        ]);
+
+        //Create and automatically login
+        if(Auth::attempt($credentials)){
+            $request->session()->regenerate();
+
+            return redirect()->intended()->with("message", "Sucessfully logged in");
+        }
+        
+        return back()->withErrors(["email" => "Credentials not found"])->onlyInput("email");
     }
 
     public function store(Request $request){   
@@ -28,9 +50,7 @@ class UserController extends Controller
         //Create and automatically login 
         $user = User::create($formFields);
 
-        //Login
-        auth()->login($user);
-        return redirect("/posts")->with("message", "User created and logged in");
+        return redirect("/login")->with("message", "User created");
     }
 
     public function logout(Request $request){
