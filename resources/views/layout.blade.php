@@ -34,10 +34,28 @@
             {{-- Navigation across site. Substitute with partial or component --}}
             <nav class="main-nav">
                 <ul class="main-nav__list">
+                    @auth
+                    <p>Welcome, {{auth()->user()->name}} :]</p>    
+                    @endauth
+
                     <a href="" class="main-nav__item"><li>News</li></a>
                     <a href="/posts" class="main-nav__item"><li>Blogs</li></a>
+                    
+                    @auth
                     <a href="" class="main-nav__item"><li>Account</li></a>
+                    <form method="POST" action="/logout" class="main-nav__item">
+                        @csrf
+                        <button type="submit">
+                            <i class="fa-solid-door"></i>
+                            Logout
+                        </button>
+                    </form>
+                    
+                    @else
+                    <a href="/login" class="main-nav__item"><li>Login</li></a>
                     <a href="/register" class="main-nav__item"><li>Register</li></a>
+                    
+                    @endauth
                 </ul>
             </nav>
         </div>

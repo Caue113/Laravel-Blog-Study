@@ -21,9 +21,10 @@ Route::get('/', function () {
 
 
 
-/* Users zone. No regex validation needed */
+/* ==============   Users   ============== */
 Route::get("/register", [UserController::class, "create"]);
 
+Route::post("/logout", [UserController::class, "logout"]);
 
 Route::get("/users", function(){
     return view("userListing", [
