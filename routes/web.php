@@ -22,13 +22,13 @@ Route::get('/', function () {
 
 
 /* ==============   Users   ============== */
-Route::get("/register", [UserController::class, "create"]);
+Route::get("/register", [UserController::class, "create"])->middleware("guest");
 
-Route::get("/login", [UserController::class, "login"]);
+Route::get("/login", [UserController::class, "login"])->name('login')->middleware("guest");
 
 Route::post("/users/authenticate", [UserController::class, "authenticate"]);
 
-Route::post("/logout", [UserController::class, "logout"]);
+Route::post("/logout", [UserController::class, "logout"])->middleware("guest");
 
 Route::get("/users", function(){
     return view("userListing", [
@@ -61,24 +61,26 @@ Route::get("/user/{userHandle}", function($userHandle){
 
 /* ============= Posts ================ */
 
-
+// Show all posts
 Route::get("/posts", [PostsController::class, "index"]);
 
-//Store
+// Store post
 Route::post("/posts", [PostsController::class, "store"]);
 
-//Create
-Route::get("/posts/create", [PostsController::class, "create"]);
+// Create post
+Route::get("/posts/create", [PostsController::class, "create"])->middleware("auth");
 
 // TODO: Show post explorer to user to select a post to edit it. 
 // Route::get("/posts/edit/", [PostsController::class, "editMany"]);
 
-//Edit specific post
-Route::get("/posts/edit/{id}", [PostsController::class, "edit"]);
+// Show form to edit specific post
+Route::get("/posts/edit/{id}", [PostsController::class, "edit"])->middleware("auth");
 
-Route::put("/posts/update/{id}", [PostsController::class, "update"]);
+// Update post
+Route::put("/posts/update/{id}", [PostsController::class, "update"])->middleware("auth");
 
-Route::delete("/posts/delete/{post}", [PostsController::class, "destroy"]);
+// Delete Post
+Route::delete("/posts/delete/{post}", [PostsController::class, "destroy"])->middleware("auth");
 
 //Must be at the bottom of all, as Laravel searches the first match
 Route::get("/posts/{posts}", [PostsController::class, "show"]);
