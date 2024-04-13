@@ -40,7 +40,6 @@ class PostsController extends Controller
             "content" => "required",
             "tags" => "required",
             "subtitle" => "required",
-            "owner" => "",
             "bgImage" => ""
         ]);
 
@@ -48,10 +47,13 @@ class PostsController extends Controller
             $formFields["bgImagePath"] = $request->file("bgImage")->store("bgImages", "public");            
         }
 
-        //TODO: let user auth in future handle owner when creating post
-        if(empty($request->input("owner"))){            
-            $formFields["owner"] = "Anonymous";            
+        try {
+            $formFields["owner"] = auth()->id();
         }
+        catch (\Throwable $th) {
+            throw $th;
+        }
+        
 
         Posts::create($formFields); //Creates row in database
         return redirect("/");

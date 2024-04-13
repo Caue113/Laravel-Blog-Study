@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,11 +17,12 @@ class PostsFactory extends Factory
      */
     public function definition(): array
     {
+        //Tag generator
         //Generate CSV Data Randomly
         $TAGS = ["Novel", "Travel", "Mathematics", "Statistics", "Literature", "Programming", "Self Story", "Art", "Design", "Music", "Illustration", "Joke", "Web Design", "Web Development", "Photography", "News", "Guide", "Tutorial"];
         $attempts = rand(1, 5); //1 to 5 tags can be used
         $tags = [];
-
+        
         for ($i=0; $i < $attempts ; $i++) { 
             $tag = $TAGS[rand(0, sizeof($TAGS) - 1)];
             if(array_search($tag, $tags) === false){
@@ -35,7 +37,7 @@ class PostsFactory extends Factory
             "subtitle" => $this->faker->sentence(18),
             "tags" => $tagsCsv,
             "content" => $this->faker->realText(150),
-            "owner" => $this->faker->name(),
+            "owner" => User::all()->random()['id'],
             "created_at" => date("d/m/Y H:i:s", time()),
             "updated_at" => date("d/m/Y H:i:s", time())
         ];

@@ -22,4 +22,9 @@ class Posts extends Model
             ->orWhere("tags", "like", '%' . request("search") . '%');
         }
     }
+
+    //Creates a relationship to User.
+    public function user(){
+        return $this->belongsTo(User::class, "id");
+    }
 }

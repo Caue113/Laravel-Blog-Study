@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->foreignId("owner")->references("id")->on("users")->onDelete("cascade");
             $table->string("title");
             $table->string("subtitle");
             $table->string("tags");
             $table->longText("content");
-            $table->string("owner");
             $table->string("bgImagePath")->nullable();  //Only added via forms, not factory
             $table->timestamps();
         });
