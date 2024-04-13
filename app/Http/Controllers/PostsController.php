@@ -68,6 +68,14 @@ class PostsController extends Controller
 
     public function edit(Request $request){        
         $_post = Posts::select("*")->where('id', $request["id"])->first();
+
+
+        //Validate if current authorized user is the same who posted
+        if($request->user()['id'] !== $_post->user['id']){
+            return abort("403");
+        }
+
+        
         return view("/posts/edit", [
             "post" => $_post
         ]);
