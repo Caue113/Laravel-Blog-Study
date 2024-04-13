@@ -25,6 +25,8 @@ class Posts extends Model
 
     //Creates a relationship to User.
     public function user(){
-        return $this->belongsTo(User::class, "id");
+        // ForeignKey is column name relative to this model.
+        // Owner key is column name relative to the other table
+        return $this->belongsTo(User::class, "owner", "id");
     }
 }
