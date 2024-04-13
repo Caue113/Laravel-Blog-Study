@@ -108,10 +108,13 @@ class PostsController extends Controller
             $filledParameters["bgImagePath"] = $request->file("bgImage")->store("bgImages", "public");            
         }
 
-        
+        //Validate if current authorized user is the same who posted
+        if($request->user()['id'] !== $post->user['id']){
+            return abort("403");
+        }
+
         $post->update($filledParameters);
-
-
+        
         //redirect("/posts/edit");  //TODO: return user to posts searcher once finish
         return redirect("/posts");
     }
