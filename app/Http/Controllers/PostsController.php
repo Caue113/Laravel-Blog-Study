@@ -87,6 +87,11 @@ class PostsController extends Controller
 
     public function update(Request $request){
         $post = Posts::select("*")->where('id', $request["id"])->first();
+
+        //Validate if current authorized user is the same who posted
+        if($request->user()['id'] !== $post->user['id']){
+            return abort("403");
+        }
   
 
         if(empty($request['id'] || is_null($request['id']))){
@@ -108,10 +113,7 @@ class PostsController extends Controller
             $filledParameters["bgImagePath"] = $request->file("bgImage")->store("bgImages", "public");            
         }
 
-        //Validate if current authorized user is the same who posted
-        if($request->user()['id'] !== $post->user['id']){
-            return abort("403");
-        }
+       
 
         $post->update($filledParameters);
         
@@ -119,7 +121,12 @@ class PostsController extends Controller
         return redirect("/posts");
     }
 
-    public function destroy(Posts $post){        
+    public function destroy(Posts $post){
+        //Validate if current authorized user is the same who posted
+        if(auth()->user()['id'] !== $post->user['id']){
+            return abort("403");
+        }
+        
         //TODO: Should delete any files attached to it as well
         $post->delete();
 
