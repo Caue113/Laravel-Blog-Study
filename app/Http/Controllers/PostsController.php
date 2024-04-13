@@ -60,6 +60,12 @@ class PostsController extends Controller
     }
 
 
+    public function editExplorer(Request $request){
+        return view("/posts/edit-explorer", [
+            "posts" => auth()->user()->posts()->get()
+        ]);
+    }
+
     public function edit(Request $request){        
         $_post = Posts::select("*")->where('id', $request["id"])->first();
         return view("/posts/edit", [

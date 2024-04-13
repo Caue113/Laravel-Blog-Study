@@ -70,8 +70,8 @@ Route::post("/posts", [PostsController::class, "store"]);
 // Create post
 Route::get("/posts/create", [PostsController::class, "create"])->middleware("auth");
 
-// TODO: Show post explorer to user to select a post to edit it. 
-// Route::get("/posts/edit/", [PostsController::class, "editMany"]);
+// Posts edit explorer, to show all posts of the user
+Route::get("/posts/edit/", [PostsController::class, "editExplorer"])->middleware("auth");
 
 // Show form to edit specific post
 Route::get("/posts/edit/{id}", [PostsController::class, "edit"])->middleware("auth");
